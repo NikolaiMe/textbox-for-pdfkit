@@ -4,7 +4,7 @@ const {
   normalizeLinebreaks,
   normalizeLineHeight,
   createLine,
-} = require("../dataRearanger");
+} = require("../js/dataRearanger");
 
 const {
   textboxStyle,

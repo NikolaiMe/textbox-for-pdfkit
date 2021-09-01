@@ -4,7 +4,7 @@ const {
   measureTextWidth,
   checkParagraphFitsInLine,
   measureTextFragments,
-} = require("../textMeasurement");
+} = require("../js/textMeasurement");
 
 const doc = new PDFDocument({
   size: [500, 500],

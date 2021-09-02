@@ -18,7 +18,7 @@ Install by using [npm](http://npmjs.org/). Use the following command after insta
 
 ## Example
 
-Let's create a pdf with a textbox. The resulting pdf for the code below you can find [here](https://github.com/NikolaiMe/textbox-for-pdfkit/blob/main/examples/test.pdf).
+Let's create a pdf with a textbox. The resulting pdf for the code below [you can find here](https://github.com/NikolaiMe/textbox-for-pdfkit/raw/main/examples/test.pdf).
 
 ```javascript
 const addTextbox = require("textbox-for-pdfkit"); // Import the package
@@ -106,14 +106,14 @@ Syntax:
 addTextbox(textArray, doc, posX, posY, width, defaultStyle);
 ```
 Function parameter description:
-- **textArray:** An array of [Text Objects](#textObject)
+- **textArray:** An array of [Text Objects](#text-objects)
 - **doc:** The doc object you get from PDFKit
 - **posX:** The X-Position of the upper left corner of your Textbox (in PDF-points)
 - **posY:** The Y-Position of the upper left corner of your Textbox (in PDF-points)
 - **width:** The width of your Textbox (in PDF-points)
-- **defaultStyle:** (optional) An object which defines the default styling of the whole textbox. The same styling keywords as in [Text Objects](#textObject) (except "text", and "newline" attributes) can be used
+- **defaultStyle:** (optional) An object which defines the default styling of the whole textbox. The same styling keywords as in [Text Objects](#text-objects) (except "text", and "newline" attributes) can be used
 
-### <a name="textObject"></a>Text Objects
+### <a name="text-objects"></a>Text Objects
 
 A Text Object can have the following attributes
 

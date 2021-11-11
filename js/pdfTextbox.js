@@ -49,17 +49,50 @@ function drawTextLinesOnPDF(lines, width, posX, posY, defaultStyle, doc) {
     if (index !== 0) yPosition += line.lineHeight;
     let xPosition = getLineStartXPosition(line, width, posX);
     line.texts.forEach((textPart) => {
-      doc
-        .font(textPart.font)
-        .fontSize(textPart.fontSize)
-        .fillColor(textPart.color)
-        .text(textPart.text, xPosition, yPosition, {
+
+        doc.fontSize(textPart.fontSize);
+
+        if( textPart.lineWidth ){
+          doc.lineWidth(textPart.lineWidth);
+        }
+        if( textPart.strokeColor ){
+          doc.strokeColor(textPart.strokeColor);
+        }
+        if( textPart.fillColor ){
+          doc.fillColor(textPart.fillColor);
+        }
+        if( textPart.lineGap ){
+          doc.lineGap(textPart.banner_lineGap);
+        }
+        if( textPart.miterLimit ){
+          doc.miterLimit(textPart.miterLimit);
+        }
+        if( textPart.lineCap ){
+          doc.lineCap(textPart.lineCap);
+        }
+        if( textPart.lineJoin ){
+          doc.lineJoin(textPart.lineJoin);
+        }
+
+        hasStroke=false;
+        if( textPart.stroke ){
+          hasStroke=true;
+        }
+        hasFill=false;
+        if( textPart.fill ){
+          hasFill=true;
+        }
+        doc.text(textPart.text, xPosition, yPosition, {
           link: textPart.link,
           align: "left",
           baseline: "alphabetic",
           oblique: textPart.oblique,
           strike: textPart.underline,
+          fill: hasFill,
+          stroke: hasStroke
         });
+
+
       xPosition += textPart.width;
     });
   });

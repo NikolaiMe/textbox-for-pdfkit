@@ -56,9 +56,9 @@ function drawTextLinesOnPDF(lines, width, posX, posY, defaultStyle, doc) {
         .text(textPart.text, xPosition, yPosition, {
           link: textPart.link,
           align: "left",
-          baseline: "alphabetic",
           oblique: textPart.oblique,
-          strike: textPart.underline,
+          underline: textPart.underline,
+          strike: textPart.strike
         });
       xPosition += textPart.width;
     });

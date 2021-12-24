@@ -127,7 +127,7 @@ A Text Object can have the following attributes
   color: string,
   oblique: number,
   newline: bool,
-  // -- the following are not recommended ---
+  // -- the following are only working with a workaround described in last chapter ---
   link: string,
   underline: bool,
   strike: bool,
@@ -165,18 +165,18 @@ The Object attributes in detail:
 - If set to `false` the text will be written in the same line as the text before
 
 **link** *(optional)*
-- **Known issue:** The clickable link is not directly on the text, but a little bit below. More info in [workaround](#workaround) chapter.
+- **Known issue:** The clickable link is not directly on the text, but a little bit below. More info in chapter [Workaround for underline/strike/link issues](#workaround).
 - Give a link in that string and the text will be a clickable link 
 
 **underline** *(optional)*
-- **Known issue:** The line is not directly under the text, but too low. More info in [workaround](#workaround) chapter. 
+- **Known issue:** The line is not directly under the text, but too low. More info in chapter [Workaround for underline/strike/link issues](#workaround).
 - If set to `true` the given text will be underlined
 
 **strike** *(optional)*
-- **Known issue:** The line is not directly under the text, but too low. More info in [workaround](#workaround) chapter.
+- **Known issue:** The line is not directly under the text, but too low. More info in chapter [Workaround for underline/strike/link issues](#workaround).
 - If set to `true` the given text will be underlined
 
-## <a name="workaround"></a>Workaround for link, underline and strike issue
+## <a name="workaround"></a>Workaround for underline/strike/link issues
 *This workaround is available starting from version 0.2.0*
 
 There is a [bug](https://github.com/foliojs/pdfkit/issues/994) in PDFKit library, which causes underlines, strike-through-lines and links to appear below its expected position. This bug only appears when using a different [text-baseline](https://www.w3schools.com/tags/canvas_textbaseline.asp) than "top". Unfortunately this library needs for most use cases the text-baseline "alphabetic".
@@ -189,7 +189,7 @@ If you add to the "default Style" of your textbox the line `baseline: "top"` (as
 
 **!BUT!** If you add this, and use different fonts or different font-sizes you will see that your text is not correctly aligned.
 
-Example [you can the find the result of the example here](https://github.com/NikolaiMe/textbox-for-pdfkit/raw/main/examples/testPartTwo.pdf).:
+Example [you can the find the result of the example here](https://github.com/NikolaiMe/textbox-for-pdfkit/raw/main/examples/testPartTwo.pdf):
 ```
    const testTextArrayTwo = [
     {

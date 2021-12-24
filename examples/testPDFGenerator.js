@@ -64,4 +64,45 @@ function testMe() {
   doc.end();
 }
 
+function testMePartTwo() {
+  // You need to create a PDFKit document first
+  const doc = new PDFDocument({
+    size: [500, 500],
+    margin: 0,
+  });
+  // Tell PDFKit where to store the PDF after creation
+  doc.pipe(fs.createWriteStream(__dirname + "/testPartTwo.pdf"));
+
+  /* 
+  The second test is very similar to the first one. The only difference is, 
+  that this test shows the workaround for links, underline and strike
+*/
+  const testTextArrayTwo = [
+    {
+      text: "text 2 ",
+    },
+    { text: "striked", strike: true },
+    {
+      text: " ",
+    },
+    { text: "underlined", underline: true },
+    {
+      text: " ",
+    },
+    { text: "link", link: "www.google.com", color:"blue" },
+  ];
+
+  addTextbox(testTextArrayTwo, doc, 100, 100, 200, {
+    color: "black",
+    fontSize: 13,
+    lineHeight: 1.5,
+    align: "center",
+    // this "baseline"-line below is very important to make strike, underline and link work
+    baseline: "top",
+  });
+
+  doc.end();
+}
+
 exports.testMe = testMe;
+exports.testMePartTwo = testMePartTwo;

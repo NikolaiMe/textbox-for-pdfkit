@@ -36,13 +36,15 @@ function addTextbox(text, doc, posX, posY, width, style = {}) {
   });
   const optimizedLines = removeSubsequentSpaces(lines, doc);
 
-  drawTextLinesOnPDF(optimizedLines, width, posX, posY, textboxStyle, doc);
+  const baseline = style.baseline || "alphabetic";
+
+  drawTextLinesOnPDF(optimizedLines, width, posX, posY, textboxStyle, doc, baseline);
 }
 
 // This function takes the prepared Data and draws everything on the right
 // position of the PDF
 
-function drawTextLinesOnPDF(lines, width, posX, posY, defaultStyle, doc) {
+function drawTextLinesOnPDF(lines, width, posX, posY, defaultStyle, doc, baseline) {
   let yPosition =
     posY + getFontAscent(defaultStyle.font, defaultStyle.fontSize);
   lines.forEach((line, index) => {
@@ -56,9 +58,10 @@ function drawTextLinesOnPDF(lines, width, posX, posY, defaultStyle, doc) {
         .text(textPart.text, xPosition, yPosition, {
           link: textPart.link,
           align: "left",
-          baseline: "alphabetic",
+          baseline: baseline,
           oblique: textPart.oblique,
-          strike: textPart.underline,
+          underline: textPart.underline,
+          strike: textPart.strike,
         });
       xPosition += textPart.width;
     });

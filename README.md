@@ -130,6 +130,7 @@ A Text Object can have the following attributes
   // -- the following are not recommended ---
   link: string,
   underline: bool,
+  strike: bool,
 }
 ```
 The Object attributes in detail:
@@ -164,12 +165,56 @@ The Object attributes in detail:
 - If set to `false` the text will be written in the same line as the text before
 
 **link** *(optional)*
-- **Known issue:** The clickable link is not directly on the text, but a little bit below
+- **Known issue:** The clickable link is not directly on the text, but a little bit below. More info in [workaround](#workaround) chapter.
 - Give a link in that string and the text will be a clickable link 
 
 **underline** *(optional)*
-- **Known issue:** The line is not directly under the text, but too low.
+- **Known issue:** The line is not directly under the text, but too low. More info in [workaround](#workaround) chapter. 
 - If set to `true` the given text will be underlined
+
+**strike** *(optional)*
+- **Known issue:** The line is not directly under the text, but too low. More info in [workaround](#workaround) chapter.
+- If set to `true` the given text will be underlined
+
+## <a name="workaround"></a>Workaround for link, underline and strike issue
+*This workaround is available starting from version 0.2.0*
+
+There is a [bug](https://github.com/foliojs/pdfkit/issues/994) in PDFKit library, which causes underlines, strike-through-lines and links to appear below its expected position. This bug only appears when using a different [text-baseline](https://www.w3schools.com/tags/canvas_textbaseline.asp) than "top". Unfortunately this library needs for most use cases the text-baseline "alphabetic".
+
+But there are some use-cases where the "alphabetic" baseline is not needed. For example, when using only one type of font, with only one font-size. In this use case, text baseline "top" does the job perfectly, too.
+
+So if you just want some centered, or right aligned text, which has some links, underlines or strikes inside, but never changes text size or font, then you will be glad to have this new feature.
+
+If you add to the "default Style" of your textbox the line `baseline: "top"` (as shown in the example below) the features "link", "underline" and "strike" work as expected.
+
+**!BUT!** If you add this, and use different fonts or different font-sizes you will see that your text is not correctly aligned.
+
+Example [you can the find the result of the example here](https://github.com/NikolaiMe/textbox-for-pdfkit/raw/main/examples/testPartTwo.pdf).:
+```
+   const testTextArrayTwo = [
+    {
+      text: "text 2 ",
+    },
+    { text: "striked", strike: true },
+    {
+      text: " ",
+    },
+    { text: "underlined", underline: true },
+    {
+      text: " ",
+    },
+    { text: "link", link: "www.google.com", color:"blue" },
+  ];
+
+  addTextbox(testTextArrayTwo, doc, 100, 100, 200, {
+    color: "black",
+    fontSize: 13,
+    lineHeight: 1.5,
+    align: "center",
+    // this "baseline"-line below is very important to make strike, underline and link work
+    baseline: "top",
+  });
+```
 
 ## Projects which use textbox-for-pdfkit
 [jungeTrauer](https://jungetrauer.de/designer/TRAUERKARTE_HAND_001)

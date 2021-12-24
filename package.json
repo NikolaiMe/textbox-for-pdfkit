@@ -1,6 +1,6 @@
 {
   "name": "textbox-for-pdfkit",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A package to easily create beautiful Textboxes with pdfKit",
   "main": "js/pdfTextbox.js",
   "scripts": {

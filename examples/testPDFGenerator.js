@@ -104,5 +104,29 @@ function testMePartTwo() {
   doc.end();
 }
 
+function testMePartThree() {
+  // You need to create a PDFKit document first
+  const doc = new PDFDocument({
+    size: [500, 500],
+    margin: 0,
+  });
+  // Tell PDFKit where to store the PDF after creation
+  doc.pipe(fs.createWriteStream(__dirname + "/testPartThree.pdf"));
+
+  /**
+   * The third test uses the optional height parameter to show
+   * only three lines of text
+   */
+  addTextbox(testTextArray, doc, 100, 100, 200, {
+    color: "black",
+    fontSize: 13,
+    lineHeight: 1.5,
+    align: "center",
+  }, /*height*/75);
+
+  doc.end();
+}
+
 exports.testMe = testMe;
 exports.testMePartTwo = testMePartTwo;
+exports.testMePartThree = testMePartThree;

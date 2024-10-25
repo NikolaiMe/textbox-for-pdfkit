@@ -103,7 +103,7 @@ const addTextbox = require("textbox-for-pdfkit");
 ### The `addTextbox()` function
 Syntax:
 ```javascript
-addTextbox(textArray, doc, posX, posY, width, defaultStyle);
+addTextbox(textArray, doc, posX, posY, width, defaultStyle, height);
 ```
 Function parameter description:
 - **textArray:** An array of [Text Objects](#text-objects)
@@ -112,6 +112,7 @@ Function parameter description:
 - **posY:** The Y-Position of the upper left corner of your Textbox (in PDF-points)
 - **width:** The width of your Textbox (in PDF-points)
 - **defaultStyle:** (optional) An object which defines the default styling of the whole textbox. The same styling keywords as in [Text Objects](#text-objects) (except "text", and "newline" attributes) can be used
+- **height:** (optional) The maximum height of your Textbox (in PDF-points)
 
 ### <a name="text-objects"></a>Text Objects
 

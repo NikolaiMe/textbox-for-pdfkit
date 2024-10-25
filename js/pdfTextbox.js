@@ -26,7 +26,7 @@ const defaultStyle = {
 // are doing can be found in the respective packages (where the functions
 // are defined)
 
-function addTextbox(text, doc, posX, posY, width, style = {}) {
+function addTextbox(text, doc, posX, posY, width, style = {}, height = null) {
   const textboxStyle = { ...defaultStyle, ...style };
   const normalizedTexts = normalizeTexts(text, textboxStyle);
   const textsWithWidth = measureTextsWidth(normalizedTexts, doc);
@@ -38,16 +38,21 @@ function addTextbox(text, doc, posX, posY, width, style = {}) {
 
   const baseline = style.baseline || "alphabetic";
 
-  drawTextLinesOnPDF(optimizedLines, width, posX, posY, textboxStyle, doc, baseline);
+  drawTextLinesOnPDF(optimizedLines, width, posX, posY, textboxStyle, doc, baseline, height);
 }
 
 // This function takes the prepared Data and draws everything on the right
 // position of the PDF
 
-function drawTextLinesOnPDF(lines, width, posX, posY, defaultStyle, doc, baseline) {
+function drawTextLinesOnPDF(lines, width, posX, posY, defaultStyle, doc, baseline, height) {
+  let currentHeight = 0;
   let yPosition =
     posY + getFontAscent(defaultStyle.font, defaultStyle.fontSize);
   lines.forEach((line, index) => {
+    currentHeight += line.lineHeight;
+    // we'll not go over the provided height, if any
+    if (height && (currentHeight > height))
+      return;
     if (index !== 0) yPosition += line.lineHeight;
     let xPosition = getLineStartXPosition(line, width, posX);
     line.texts.forEach((textPart) => {

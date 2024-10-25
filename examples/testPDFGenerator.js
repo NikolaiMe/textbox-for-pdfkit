@@ -1,4 +1,4 @@
-const addTextbox = require("textbox-for-pdfkit"); // Import the package
+const addTextbox = require("../js/pdfTextbox"); // Import the package
 const PDFDocument = require("pdfkit"); // Of course you need pdfkit
 const fs = require("fs"); // fs is helpful for storing the pdf in your file system.
 
@@ -89,7 +89,7 @@ function testMePartTwo() {
     {
       text: " ",
     },
-    { text: "link", link: "www.google.com", color:"blue" },
+    { text: "link", link: "www.google.com", color: "blue" },
   ];
 
   addTextbox(testTextArrayTwo, doc, 100, 100, 200, {

@@ -223,6 +223,8 @@ Example [you can the find the result of the example here](https://github.com/Nik
 | 0.2.0 | Added Features "link", "underline" and "strikethrough" |
 | 0.2.1 | Documentation adaptions |
 |0.2.2 | Updated the packages to tackle vulnerabilities |
+|0.2.3 | Added Feature "height" to textbox |
+
 
 ## Projects which use textbox-for-pdfkit
 [jungeTrauer](https://jungetrauer.de/designer/TRAUERKARTE_HAND_001)
